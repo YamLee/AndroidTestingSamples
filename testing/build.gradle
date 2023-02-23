@@ -1,0 +1,45 @@
+import me.yamlee.testing.build.Deps
+
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdkVersion Deps.Versions.Android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion Deps.Versions.Android.minSdkVersion
+        targetSdkVersion Deps.Versions.Android.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    api Deps.Test.junit
+    api Deps.Test.truth
+    api Deps.Test.robolectric
+    api Deps.Test.androidXTestCore
+    api Deps.Test.androidXJUnitExt
+    api Deps.Test.androidXTruthExt
+    api Deps.Test.guavaAndroid
+    api Deps.Test.mockito
+    api Deps.Test.mockKotlin
+    api Deps.Test.mockOnline
+}
